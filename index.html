@@ -51,19 +51,31 @@
   </div>
 
   <script>
-    const REDIRECT_URL = "https://google.com"; // ← Встав своє посилання
+  const REDIRECT_URL = "https://google.com"; // ← твоє посилання
 
-    // Функція перевірки TikTok WebView
-    function isTikTokWebView() {
-      return /TikTok/i.test(navigator.userAgent);
-    }
+  function isInAppBrowser() {
+    const ua = navigator.userAgent || "";
 
-    // Якщо НЕ TikTok WebView (тобто браузер) → редіректимо автоматично
-    if (!isTikTokWebView()) {
-      window.location.href = REDIRECT_URL;
-    }
+    // Ознаки in-app браузерів
+    const inAppIndicators = [
+      "FBAN",
+      "FBAV",
+      "Instagram",
+      "TikTok",
+      "WebView",
+      "wv"
+    ];
 
-    // TikTok WebView → нічого не робимо, показуємо інструкцію
-  </script>
+    return inAppIndicators.some(indicator => ua.includes(indicator));
+  }
+
+  // Якщо це НЕ in-app браузер → робимо редірект
+  // Тобто у звичайному Chrome / Safari спрацює автоматично
+  if (!isInAppBrowser()) {
+    window.location.replace(REDIRECT_URL);
+  }
+
+  // Якщо це TikTok → нічого не робимо
+</script>
 </body>
 </html>
