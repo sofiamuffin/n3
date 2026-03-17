@@ -50,32 +50,16 @@
     <div class="instruction">Оберіть "Відкрити в браузері"</div>
   </div>
 
-  <script>
-  const REDIRECT_URL = "https://google.com"; // ← твоє посилання
+ <script>
+  const REDIRECT_URL = "https://google.com";
 
-  function isInAppBrowser() {
-    const ua = navigator.userAgent || "";
-
-    // Ознаки in-app браузерів
-    const inAppIndicators = [
-      "FBAN",
-      "FBAV",
-      "Instagram",
-      "TikTok",
-      "WebView",
-      "wv"
-    ];
-
-    return inAppIndicators.some(indicator => ua.includes(indicator));
+  // Якщо сторінка відкрита вперше — нічого не робимо
+  if (!sessionStorage.getItem("opened_in_browser")) {
+      sessionStorage.setItem("opened_in_browser", "1");
+  } else {
+      // Якщо сторінка вже перезавантажувалась у браузері → редірект
+      window.location.replace(REDIRECT_URL);
   }
-
-  // Якщо це НЕ in-app браузер → робимо редірект
-  // Тобто у звичайному Chrome / Safari спрацює автоматично
-  if (!isInAppBrowser()) {
-    window.location.replace(REDIRECT_URL);
-  }
-
-  // Якщо це TikTok → нічого не робимо
 </script>
 </body>
 </html>
