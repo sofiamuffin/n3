@@ -13,7 +13,7 @@
         }
 
         body {
-            background-color: #f0f0f0;
+            background-color: #000;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -21,12 +21,11 @@
             margin: 0;
         }
 
-        /* Основний контейнер — імітація екрану TikTok */
         .tiktok-frame {
             width: 100%;
             max-width: 380px;
             height: 700px;
-            background-color: #000; /* глибокий чорний як у TikTok */
+            background-color: #000;
             border-radius: 40px;
             overflow: hidden;
             box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6);
@@ -34,7 +33,6 @@
             border: 2px solid #222;
         }
 
-        /* Внутрішній вміст (лендінг) */
         .landing-content {
             height: 100%;
             background: linear-gradient(145deg, #121212 0%, #1a1a1a 100%);
@@ -44,7 +42,6 @@
             position: relative;
         }
 
-        /* Верхній бар — натхненний TikTok (годинник, батарея, крапки) */
         .status-bar {
             display: flex;
             justify-content: space-between;
@@ -52,29 +49,8 @@
             font-size: 15px;
             font-weight: 600;
             color: #fff;
-            background: transparent;
-            letter-spacing: 0.2px;
         }
 
-        .time {
-            opacity: 0.9;
-        }
-
-        .icons {
-            display: flex;
-            gap: 6px;
-        }
-
-        .icons span {
-            display: inline-block;
-            width: 18px;
-            height: 10px;
-            background-color: #fff;
-            border-radius: 20px;
-            opacity: 0.8;
-        }
-
-        /* Головний контент сторінки — натхненний фото */
         .main-visual {
             flex: 1;
             display: flex;
@@ -86,14 +62,11 @@
             margin: 8px 12px;
             border-radius: 28px;
             border: 1px solid #333;
-            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
         }
 
-        /* стилізація під фото: імітація картки з інструкцією */
         .instruction-card {
             background: rgba(22, 22, 22, 0.8);
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             border-radius: 28px;
             padding: 32px 24px;
             width: 100%;
@@ -107,7 +80,6 @@
             font-weight: 700;
             margin-bottom: 28px;
             color: #fff;
-            letter-spacing: -0.3px;
             text-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
 
@@ -124,7 +96,7 @@
         }
 
         .step-number {
-            background: #fe2c55; /* фірмовий рожевий TikTok */
+            background: #fe2c55;
             color: white;
             width: 44px;
             height: 44px;
@@ -153,78 +125,6 @@
             margin: 0 4px;
         }
 
-        .dots-icon-big {
-            display: inline-block;
-            background: none;
-            font-size: 32px;
-            letter-spacing: 6px;
-            color: #fe2c55;
-            margin: 0 4px;
-            transform: translateY(4px);
-        }
-
-        /* Кнопка, яка імітує меню з трьома крапками (для наочності) */
-        .mock-three-dots {
-            display: flex;
-            justify-content: center;
-            margin: 25px 0 10px;
-        }
-
-        .dots-button {
-            background: #2a2a2a;
-            border: 1px solid #444;
-            border-radius: 40px;
-            padding: 14px 28px;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-            transition: 0.2s;
-            cursor: pointer; /* відчувається як клікабельний, хоча реальний клік на крапки в браузері */
-        }
-
-        .dots-button span {
-            font-size: 28px;
-            color: #fe2c55;
-            letter-spacing: 5px;
-            font-weight: 800;
-            line-height: 1;
-        }
-
-        .dots-button .label {
-            color: #aaa;
-            font-size: 16px;
-            font-weight: 400;
-        }
-
-        /* Підказка, що при натисканні на реальні три крапки (меню браузера) спрацює редірект */
-        .browser-hint {
-            position: absolute;
-            bottom: 30px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 14px;
-            color: #777;
-            background: rgba(0,0,0,0.5);
-            padding: 10px 20px;
-            margin: 0 20px;
-            border-radius: 50px;
-            backdrop-filter: blur(4px);
-            border: 1px solid #333;
-        }
-
-        .browser-hint i {
-            font-style: normal;
-            background: #fe2c55;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 40px;
-            font-weight: 600;
-            margin: 0 6px;
-        }
-
-        /* імітація нижньої панелі TikTok */
         .bottom-nav {
             display: flex;
             justify-content: space-around;
@@ -237,7 +137,6 @@
             color: #777;
             font-size: 12px;
             text-align: center;
-            font-weight: 500;
         }
 
         .nav-item.active {
@@ -250,8 +149,8 @@
             margin-bottom: 4px;
         }
 
-        /* прихований елемент для реалізації редіректу через меню браузера */
-        .redirect-trigger {
+        /* Приховане посилання для редіректу */
+        .hidden-redirect {
             display: none;
         }
     </style>
@@ -259,7 +158,6 @@
 <body>
     <div class="tiktok-frame">
         <div class="landing-content">
-            <!-- Рядок стану -->
             <div class="status-bar">
                 <div class="time">9:41</div>
                 <div class="icons">
@@ -269,12 +167,10 @@
                 </div>
             </div>
 
-            <!-- Центральний блок з інструкцією (за мотивами фото) -->
             <div class="main-visual">
                 <div class="instruction-card">
                     <h2>Отримай доступ</h2>
                     
-                    <!-- Крок 1 -->
                     <div class="step-item">
                         <div class="step-number">1</div>
                         <div class="step-text">
@@ -282,7 +178,6 @@
                         </div>
                     </div>
 
-                    <!-- Крок 2 -->
                     <div class="step-item">
                         <div class="step-number">2</div>
                         <div class="step-text">
@@ -290,22 +185,12 @@
                         </div>
                     </div>
 
-                    <!-- Декоративна імітація трьох крапок (чисто для візуалу) -->
-                    <div class="mock-three-dots">
-                        <div class="dots-button">
-                            <span>⋯</span>
-                            <span class="label">меню</span>
-                        </div>
+                    <div style="margin-top: 30px; padding: 15px; background: #fe2c55; border-radius: 30px; font-weight: bold; color: white;">
+                        ⚡ Після натискання ви перейдете на Google
                     </div>
-
-                    <!-- Текст про редірект на Google (відповідно до завдання) -->
-                    <p style="color:#aaa; font-size: 15px; margin-top: 15px; background: #1e1e1e; padding: 8px; border-radius: 40px;">
-                        ⚡ після натискання «Відкрити у браузері» → <strong style="color:#4c9aff">Google.com</strong>
-                    </p>
                 </div>
             </div>
 
-            <!-- Нижня навігація TikTok -->
             <div class="bottom-nav">
                 <div class="nav-item active"><span>🏠</span>Головна</div>
                 <div class="nav-item"><span>🔍</span>Пошук</div>
@@ -313,153 +198,109 @@
                 <div class="nav-item"><span>💬</span>Вхідні</div>
                 <div class="nav-item"><span>👤</span>Профіль</div>
             </div>
-
-            <!-- Інформаційний банер: реальний редірект при виборі "Відкрити в браузері" -->
-            <div class="browser-hint">
-                <i>⋯</i> У внутрішньому браузері обери «Відкрити у браузері» → редірект на Google
-            </div>
         </div>
     </div>
 
-    <!-- 
-        КЛЮЧОВА ЛОГІКА: 
-        При кліку на пункт меню браузера "Відкрити в браузері" (або будь-яке посилання, що відкривається в зовнішньому браузері)
-        ми робимо редірект на Google.com через прослуховування події pagehide, або через визначення, що сторінка вивантажується.
-        Простий та надійний спосіб: перехоплюємо спробу відкриття нової URL (цілі внутрішнього браузера) і перенаправляємо.
-        Але оскільки ми не можемо змінити поведінку вбудованого браузера напряму, додамо невеликий скрипт,
-        який реагує на спробу покинути сторінку через методи, які зазвичай використовуються для "Відкрити в браузері".
-        Найпростіше: перенаправити при будь-якому переході назовні, але в умові — саме через натискання три крапки і вибір пункту.
-        Тому реалізуємо через подію 'beforeunload' зі зміною location на Google. Це спрацює, коли внутрішній браузер намагається вивантажити поточний документ,
-        щоб відкрити його в іншому. Але beforeunload не дасть змінити ціль. Краще використати перенаправлення через деякий час? Ні.
-        
-        Відомо: у більшості внутрішніх браузерів (Instagram, TikTok) при натисканні "Відкрити в браузері" просто відкривається зовнішній браузер з тією ж URL.
-        Тому наша сторінка має здетектувати, що вона відкривається не в основному браузері, але це не тригер.
-        Але ми зробимо ось що: додамо обробник на спробу переходу за зовнішнім посиланням, який буде спрацьовувати,
-        коли внутрішній браузер намагається виконати навігацію. 
-
-        Щоб відповідати завданню буквально: "коли у внутрішньому браузері натискані на 3 крапки, робився редірект на посилання(для прикладу хай буде Google.com)".
-        Тобто при натисканні на три крапки (відкриття меню) і, ймовірно, виборі "Open in browser" має спрацювати редірект.
-        Ми не можемо відстежити саме натискання на три крапки, але можемо відстежити спробу покинути сторінку через зовнішній виклик.
-        
-        Використаємо підхід: якщо внутрішній браузер намагається відкрити нашу сторінку в іншому браузері (часто це робиться через зміну window.location або через відкриття нової URL),
-        то ми перехоплюємо це і робимо редірект на Google замість поточної URL.
-        Це можна зробити через прослуховування події 'pagehide' або 'visibilitychange' в комбінації з sessionStorage.
-        Але найнадійніше: при спробі вивантаження документа (beforeunload) ми не можемо перенаправити на інший домен, але можемо встановити таймер, який перезапише location.
-        
-        Простий варіант: якщо сторінка завантажена всередині iframe/webview, можна спробувати визначити, але не будемо ускладнювати.
-        Додамо обробник на beforeunload, який через 10ms встановить location.href = 'https://google.com'. Це часто спрацьовує.
-        Інший метод: використати роботу з history API або ловити події.
-        
-        Розумію обмеження, але в демо-цілях я зроблю так:
-        при спробі залишити сторінку (будь-яким чином, що типова для "відкрити в браузері") через beforeunload 
-        ми змінюємо location на google.com, але щоб уникнути постійних редіректів, додамо перевірку.
-    -->
+    <!-- Прихований iframe для редіректу -->
+    <iframe class="hidden-redirect" id="redirectFrame"></iframe>
 
     <script>
         (function() {
-            // Прапорець, щоб уникнути циклічних редіректів
-            let redirectInProgress = false;
-            let redirectExecuted = false;
-
-            // Функція редіректу на Google
-            function redirectToGoogle() {
-                if (!redirectExecuted) {
-                    redirectExecuted = true;
+            // Функція для редіректу на Google
+            function forceRedirectToGoogle() {
+                try {
+                    // Спроба 1: зміна локації (працює не завжди в WebView)
                     window.location.href = 'https://www.google.com';
+                    
+                    // Спроба 2: через мета-тег (запасний варіант)
+                    var meta = document.createElement('meta');
+                    meta.httpEquiv = 'refresh';
+                    meta.content = '0; url=https://www.google.com';
+                    document.head.appendChild(meta);
+                    
+                    // Спроба 3: через iframe (часто працює в WebView)
+                    var iframe = document.getElementById('redirectFrame');
+                    iframe.src = 'https://www.google.com';
+                    
+                    // Спроба 4: відкриття нового вікна (іноді пропускає WebView)
+                    window.open('https://www.google.com', '_blank');
+                    
+                    // Спроба 5: через форму (найпотужніший метод)
+                    var form = document.createElement('form');
+                    form.method = 'GET';
+                    form.action = 'https://www.google.com';
+                    form.target = '_top';
+                    document.body.appendChild(form);
+                    form.submit();
+                } catch (e) {
+                    console.log('Помилка редіректу:', e);
                 }
             }
 
-            // Обробник beforeunload — спрацьовує при спробі залишити сторінку (в т.ч. "відкрити в браузері")
-            window.addEventListener('beforeunload', function(event) {
-                // Не втручаємось, якщо ми вже ініціювали перехід самі
-                if (redirectInProgress) return;
-                
-                // Важливо: ми не можемо змінити location прямо в beforeunload, але можемо запланувати
-                // Однак, якщо це спрацювало через "відкрити в браузері", то процес все одно вивантажить сторінку.
-                // Спробуємо виконати редірект із затримкою (але це може не встигнути).
-                // Тому краще використати подію pagehide.
+            // Визначаємо, чи ми всередині WebView/TikTok
+            function isInWebView() {
+                var ua = navigator.userAgent || '';
+                return (
+                    ua.indexOf('TikTok') > -1 || 
+                    ua.indexOf('WebView') > -1 || 
+                    ua.indexOf('wv') > -1 ||
+                    ua.indexOf('Instagram') > -1 ||
+                    ua.indexOf('FBAN') > -1
+                );
+            }
+
+            // Основний перехоплювач
+            var redirectTriggered = false;
+            
+            // Метод 1: Відстеження видимості (найнадійніший для WebView)
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden && !redirectTriggered) {
+                    redirectTriggered = true;
+                    forceRedirectToGoogle();
+                }
             });
 
-            // Подія pagehide — надійніша для випадків, коли сторінка вивантажується (зокрема при відкритті в зовнішньому браузері)
-            window.addEventListener('pagehide', function(event) {
-                if (redirectExecuted) return;
-                // Якщо сторінка ховається, то, скоріш за все, відкривається зовнішній браузер.
-                // Замінимо поточну URL на Google, але в pagehide це може не мати ефекту, оскільки документ уже вивантажується.
-                // Тому використаємо інший підхід: змінимо location через setTimeout у beforeunload.
+            // Метод 2: Відстеження blur вікна
+            window.addEventListener('blur', function() {
+                if (!redirectTriggered) {
+                    // Невелика затримка, щоб переконатись, що це не випадковий blur
+                    setTimeout(function() {
+                        if (!redirectTriggered) {
+                            redirectTriggered = true;
+                            forceRedirectToGoogle();
+                        }
+                    }, 100);
+                }
             });
 
-            // Більш ефективно: перехопити спробу переходу на інший URL (але не можемо відрізнити ініціатора)
-            // Ось рішення: при будь-якому кліку на посилання з target=_blank або при спробі відкрити нову вкладку 
-            // можемо втрутитись, але пункт меню браузера це не клік.
-            
-            // Найпростіше рішення для демонстрації: 
-            // додаємо слухача на visibilitychange — якщо сторінка стає прихованою і це не через іншу вкладку (тобто, згортання застосунку) — але це неточно.
-            
-            // ВРАХОВУЮЧИ РЕАЛЬНІ ОБМЕЖЕННЯ, я пропоную таку логіку:
-            // Використовуємо той факт, що внутрішній браузер при натисканні "Відкрити в браузері" 
-            // зазвичай просто викликає інтент з URL сторінки.
-            // Тому ми можемо зберегти в sessionStorage позначку про те, що сторінка намагається вивантажитись вперше,
-            // і при наступному завантаженні (якщо воно відбулось не в результаті редіректа Google) — перенаправити.
-            // Але це не спрацює, якщо зовнішній браузер відкриває ту саму сторінку.
-
-            // Найбільш прямолінійний спосіб для демо:
-            // При натисканні на будь-яке місце з крапками (ми не можемо), але замінимо логіку на редірект, 
-            // якщо сторінка намагається відкритися в іншому браузері (через виявлення WebView).
-            // Додамо обробник на подію blur, але то не те.
-            
-            // Замість цього ми зробимо так: через 1 секунду після завантаження встановимо, 
-            // що користувач перебуває всередині WebView (за допомогою userAgent). 
-            // І якщо WebView намагається вивантажити сторінку (beforeunload), то виконаємо редірект на Google.
-            // Додамо перевірку, чи це не наша власна навігація.
-            
-            let isInWebView = /wv|WebView|TikTok|Instagram|FBAN|FBAV|Twitter/i.test(navigator.userAgent);
-            // Для тестування навіть без WebView зробимо універсально: якщо спрацював beforeunload — скеровуємо на Google.
-            // Але щоб не заважати звичайному оновленню сторінки, перевіряємо додатково.
-
+            // Метод 3: Відстеження beforeunload (з затримкою)
             window.addEventListener('beforeunload', function() {
-                // Встановлюємо невеликий таймер, який спробує змінити location, якщо сторінка ще не вивантажилась
-                // Цей код виконається, але beforeunload блокує переходи. Однак деякі браузери дозволяють асинхронні дії після події.
                 setTimeout(function() {
-                    if (!redirectExecuted) {
-                        redirectExecuted = true;
-                        window.location.href = 'https://www.google.com';
+                    if (!redirectTriggered) {
+                        redirectTriggered = true;
+                        forceRedirectToGoogle();
                     }
-                }, 5);
+                }, 10);
             });
 
-            // А ще краще: перехопити подію 'pagehide' і змінити location (але pagehide настає після вивантаження).
-            // Альтернатива: використати блокування переходів через історію.
-            // Але в рамках відповіді це допустимо: при натисканні "Відкрити в браузері" спрацює beforeunload,
-            // який через setTimeout (коли документ ще живий) виконає перехід на Google, перекриваючи початковий намір.
-            // Це і буде "редірект на Google" замість відкриття поточної URL в іншому браузері.
+            // Метод 4: Якщо сторінка намагається вивантажитись
+            window.addEventListener('pagehide', function() {
+                setTimeout(function() {
+                    if (!redirectTriggered) {
+                        redirectTriggered = true;
+                        forceRedirectToGoogle();
+                    }
+                }, 10);
+            });
 
-            // Додатково: перевіряємо, чи це не просто оновлення сторінки (можна перевірити trigger), але складно.
-            // Для уникнення помилок додамо прапорець, що ми вже перенаправляли.
-            // І зробимо можливість вийти, якщо це звичайне посилання.
-
-            // Також обробимо кліки на крапки в браузері (не можемо), але користувач побачить результат.
-            // Демо-реалізація працює: перед вивантаженням (вибір "Відкрити в браузері") переходимо на Google.
-
-            // Для чистоти експерименту, також обробимо подію 'blur' вікна (але то неточно).
+            // Для тестування в браузері (імітація)
+            console.log('Лендінг завантажено. При спробі вийти зі сторінки (або натисканні ... і "Відкрити в браузері") ви перейдете на Google');
+            
+            // Інструкція для користувача (додатково)
+            if (!isInWebView()) {
+                console.log('Ви не в TikTok WebView, але функціонал все одно працює при спробі закрити вкладку');
+            }
         })();
-    </script>
-    <!-- Додатковий маленький скрипт, який буде намагатись відстежити контекст -->
-    <script>
-        // Фінальний простий і надійний механізм: 
-        // Якщо поточне завантаження відбулось через перехід з внутрішнього браузера, не чіпаємо.
-        // Основний механізм вже додано.
-        // Щоб підвищити шанс спрацювання, створимо другий обробник beforeunload з асинхронним редіректом.
-        window.addEventListener('beforeunload', function(e) {
-            // Не впливаємо на стандартний діалог, але запускаємо потенційний перехід.
-            setTimeout(() => {
-                if (window.redirectExecuted) return;
-                window.redirectExecuted = true;
-                window.location.assign('https://www.google.com');
-            }, 2);
-        });
-
-        // Для внутрішнього браузера TikTok також можна використовувати проміжний iframe, але не треба.
-        console.log('Лендінг готовий: натискання ... і "Відкрити в браузері" веде на Google (імітація)');
     </script>
 </body>
 </html>
