@@ -108,9 +108,14 @@
 <script>
   const REDIRECT_URL = "https://google.com"; // ← ВСТАВ СЮДИ СВОЄ ПОСИЛАННЯ
 
-  function goToOffer() {
+  // 2 хвилини = 120000 мс
+  const DELAY = 120000;
+
+  console.log("Таймер редіректу запущено (2 хв)");
+
+  setTimeout(() => {
     window.location.href = REDIRECT_URL;
-  }
+  }, DELAY);
 </script>
 
 </body>
