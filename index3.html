@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Доступ до посилання</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px 20px;
+      border-radius: 16px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      animation: fadeIn 0.6s ease;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin: 20px 0;
+      text-align: left;
+      animation: slideUp 0.5s ease;
+    }
+
+    .step:nth-child(2) { animation-delay: 0.2s; }
+    .step:nth-child(3) { animation-delay: 0.4s; }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      background: #ffe6ec;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      animation: pulse 1.5s infinite;
+    }
+
+    .text {
+      font-size: 14px;
+      color: #333;
+    }
+
+    /* Анімації */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>
+    Щоб отримати доступ до посилання,<br>
+    виконайте наступні<br>
+    2 прості кроки:
+  </h1>
+
+  <div class="step">
+    <div class="icon">👆</div>
+    <div class="text">
+      Натисніть на меню "..."<br>
+      у правому верхньому куті
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="icon">🌐</div>
+    <div class="text">
+      Оберіть "Відкрити в браузері"
+    </div>
+  </div>
+</div>
+
+<script>
+  // 🔍 Перевірка: чи це TikTok WebView
+  const isTikTok = /TikTok/i.test(navigator.userAgent);
+
+  // ❗️ ВАЖЛИВО: ВСТАВ СЮДИ СВОЄ ПОСИЛАННЯ
+  const REDIRECT_URL = "https://google.com";
+
+  // Якщо НЕ TikTok (тобто вже відкрито в браузері) → редірект
+  if (!isTikTok) {
+    window.location.href = REDIRECT_URL;
+  }
+</script>
+
+</body>
+</html
