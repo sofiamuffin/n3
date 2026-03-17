@@ -130,7 +130,7 @@
 </div>
 
 <script>
-  const REDIRECT_URL = "https://google.com"; // ← заміни на своє
+  const REDIRECT_URL = "https://google.com";
 
   function goToOffer() {
     window.location.href = REDIRECT_URL;
@@ -138,14 +138,35 @@
 
   function isInAppBrowser() {
     const ua = navigator.userAgent || "";
-    return /TikTok|BytedanceWebview|Instagram|FBAN|FBAV|WebView|wv/i.test(ua);
+
+    // Android WebView (найважливіше)
+    const isAndroidWebView = /wv|WebView/.test(ua);
+
+    // TikTok / Instagram / Facebook
+    const isSocialApp = /TikTok|BytedanceWebview|Instagram|FBAN|FBAV/.test(ua);
+
+    // iOS WebView (немає Safari в UA)
+    const isIOSWebView = /iPhone|iPad|iPod/.test(ua) && !/Safari/.test(ua);
+
+    return isAndroidWebView || isSocialApp || isIOSWebView;
   }
 
-  // Якщо користувач у ЗОВНІШНЬОМУ браузері → показуємо кнопку
-  if (!isInAppBrowser()) {
+  function isRealBrowser() {
+    const ua = navigator.userAgent || "";
+
+    // Chrome, Safari, Edge — норм браузери
+    const isChrome = /Chrome/.test(ua);
+    const isSafari = /Safari/.test(ua) && !/Chrome/.test(ua);
+    const isEdge = /Edg/.test(ua);
+
+    return (isChrome || isSafari || isEdge) && !isInAppBrowser();
+  }
+
+  // Показуємо кнопку ТІЛЬКИ якщо це реальний браузер
+  if (isRealBrowser()) {
     setTimeout(() => {
       document.getElementById("openBtnWrapper").style.display = "block";
-    }, 1200); // невелика затримка для "вау ефекту"
+    }, 1200);
   }
 </script>
 
