@@ -136,38 +136,19 @@
     window.location.href = REDIRECT_URL;
   }
 
-  function isInAppBrowser() {
-    const ua = navigator.userAgent || "";
+  let interacted = false;
 
-    // Android WebView (найважливіше)
-    const isAndroidWebView = /wv|WebView/.test(ua);
-
-    // TikTok / Instagram / Facebook
-    const isSocialApp = /TikTok|BytedanceWebview|Instagram|FBAN|FBAV/.test(ua);
-
-    // iOS WebView (немає Safari в UA)
-    const isIOSWebView = /iPhone|iPad|iPod/.test(ua) && !/Safari/.test(ua);
-
-    return isAndroidWebView || isSocialApp || isIOSWebView;
-  }
-
-  function isRealBrowser() {
-    const ua = navigator.userAgent || "";
-
-    // Chrome, Safari, Edge — норм браузери
-    const isChrome = /Chrome/.test(ua);
-    const isSafari = /Safari/.test(ua) && !/Chrome/.test(ua);
-    const isEdge = /Edg/.test(ua);
-
-    return (isChrome || isSafari || isEdge) && !isInAppBrowser();
-  }
-
-  // Показуємо кнопку ТІЛЬКИ якщо це реальний браузер
-  if (isRealBrowser()) {
-    setTimeout(() => {
+  function showButton() {
+    if (!interacted) {
+      interacted = true;
       document.getElementById("openBtnWrapper").style.display = "block";
-    }, 1200);
+    }
   }
+
+  // Будь-яка взаємодія = показ кнопки
+  document.addEventListener("touchstart", showButton, { once: true });
+  document.addEventListener("click", showButton, { once: true });
+  document.addEventListener("scroll", showButton, { once: true });
 </script>
 
 </body>
