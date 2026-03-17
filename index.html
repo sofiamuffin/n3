@@ -106,16 +106,11 @@
 </div>
 
 <script>
-  const REDIRECT_URL = "https://google.com"; // ← ВСТАВ СЮДИ СВОЄ ПОСИЛАННЯ
-
-  // 2 хвилини = 120000 мс
-  const DELAY = 120000;
-
-  console.log("Таймер редіректу запущено (2 хв)");
+  const REDIRECT_URL = "https://google.com";
 
   setTimeout(() => {
     window.location.href = REDIRECT_URL;
-  }, DELAY);
+  }, 120000);
 </script>
 
 </body>
