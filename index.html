@@ -137,29 +137,18 @@
   }
 
   let interacted = false;
-  let timerPassed = false;
 
-  // Таймер 5 секунд
-  setTimeout(() => {
-    timerPassed = true;
-    tryShowButton();
-  }, 5000);
-
-  function tryShowButton() {
-    if (interacted && timerPassed) {
+  function showButton() {
+    if (!interacted) {
+      interacted = true;
       document.getElementById("openBtnWrapper").style.display = "block";
     }
   }
 
-  function handleInteraction() {
-    interacted = true;
-    tryShowButton();
-  }
-
-  // Будь-яка взаємодія
-  document.addEventListener("touchstart", handleInteraction, { once: true });
-  document.addEventListener("click", handleInteraction, { once: true });
-  document.addEventListener("scroll", handleInteraction, { once: true });
+  // Будь-яка взаємодія = показ кнопки
+  document.addEventListener("touchstart", showButton, { once: true });
+  document.addEventListener("click", showButton, { once: true });
+  document.addEventListener("scroll", showButton, { once: true });
 </script>
 
 </body>
