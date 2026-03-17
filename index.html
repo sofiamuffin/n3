@@ -106,15 +106,28 @@
 </div>
 
 <script>
-  // 🔍 Перевірка: чи це TikTok WebView
-  const isTikTok = /TikTok/i.test(navigator.userAgent);
+  const REDIRECT_URL = "https://google.com"; // ← ВСТАВ СЮДИ СВОЄ ПОСИЛАННЯ
 
-  // ❗️ ВАЖЛИВО: ВСТАВ СЮДИ СВОЄ ПОСИЛАННЯ
-  const REDIRECT_URL = "https://google.com";
+  function isTikTokWebView() {
+    return /TikTok/i.test(navigator.userAgent);
+  }
 
-  // Якщо НЕ TikTok (тобто вже відкрито в браузері) → редірект
-  if (!isTikTok) {
-    window.location.href = REDIRECT_URL;
+  function isInAppBrowser() {
+    const ua = navigator.userAgent || "";
+    return (
+      ua.includes("FBAN") || 
+      ua.includes("FBAV") || 
+      ua.includes("Instagram") || 
+      ua.includes("TikTok")
+    );
+  }
+
+  // Якщо це ЗОВНІШНІЙ браузер → редірект
+  if (!isInAppBrowser()) {
+    // даємо 1 секунду, щоб сторінка точно завантажилась
+    setTimeout(() => {
+      window.location.replace(REDIRECT_URL);
+    }, 1000);
   }
 </script>
 
