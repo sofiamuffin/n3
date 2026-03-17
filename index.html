@@ -62,6 +62,23 @@
       color: #333;
     }
 
+    #openBtnWrapper {
+      margin-top: 20px;
+      display: none;
+    }
+
+    button {
+      padding: 14px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background: #ff4d6d;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      animation: pulse 1.5s infinite;
+    }
+
     /* Анімації */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
@@ -75,7 +92,7 @@
 
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+      50% { transform: scale(1.08); }
       100% { transform: scale(1); }
     }
   </style>
@@ -103,31 +120,34 @@
       Оберіть "Відкрити в браузері"
     </div>
   </div>
+
+  <!-- КНОПКА -->
+  <div id="openBtnWrapper">
+    <button onclick="goToOffer()">
+      Я відкрив у браузері
+    </button>
+  </div>
 </div>
 
 <script>
-  // Посилання, куди юзер піде
-  const REDIRECT_URL = "https://google.com";
+  const REDIRECT_URL = "https://google.com"; // ← заміни на своє
 
-  // Показуємо кнопку для переходу — користувач сам підтверджує
   function goToOffer() {
     window.location.href = REDIRECT_URL;
   }
-</script>
 
-<div style="margin-top:20px; text-align:center;">
-  <button onclick="goToOffer()" style="
-    padding:14px 20px;
-    font-size:16px;
-    border:none;
-    border-radius:10px;
-    background:#ff4d6d;
-    color:white;
-    font-weight:bold;
-  ">
-    Я відкрив у браузері
-  </button>
-</div>
+  function isInAppBrowser() {
+    const ua = navigator.userAgent || "";
+    return /TikTok|BytedanceWebview|Instagram|FBAN|FBAV|WebView|wv/i.test(ua);
+  }
+
+  // Якщо користувач у ЗОВНІШНЬОМУ браузері → показуємо кнопку
+  if (!isInAppBrowser()) {
+    setTimeout(() => {
+      document.getElementById("openBtnWrapper").style.display = "block";
+    }, 1200); // невелика затримка для "вау ефекту"
+  }
+</script>
 
 </body>
 </html>
