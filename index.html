@@ -1,306 +1,133 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TikTok Lens | Перехід</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <title>Доступ до посилання</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        body {
-            background-color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-        }
+    .container {
+      background: #fff;
+      padding: 30px 20px;
+      border-radius: 16px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      animation: fadeIn 0.6s ease;
+    }
 
-        .tiktok-frame {
-            width: 100%;
-            max-width: 380px;
-            height: 700px;
-            background-color: #000;
-            border-radius: 40px;
-            overflow: hidden;
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6);
-            position: relative;
-            border: 2px solid #222;
-        }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
 
-        .landing-content {
-            height: 100%;
-            background: linear-gradient(145deg, #121212 0%, #1a1a1a 100%);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin: 20px 0;
+      text-align: left;
+      animation: slideUp 0.5s ease;
+    }
 
-        .status-bar {
-            display: flex;
-            justify-content: space-between;
-            padding: 14px 20px 8px;
-            font-size: 15px;
-            font-weight: 600;
-            color: #fff;
-        }
+    .step:nth-child(2) { animation-delay: 0.2s; }
+    .step:nth-child(3) { animation-delay: 0.4s; }
 
-        .main-visual {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: radial-gradient(circle at 30% 30%, #2a2a2a, #0a0a0a);
-            margin: 8px 12px;
-            border-radius: 28px;
-            border: 1px solid #333;
-        }
+    .icon {
+      width: 40px;
+      height: 40px;
+      background: #ffe6ec;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      animation: pulse 1.5s infinite;
+    }
 
-        .instruction-card {
-            background: rgba(22, 22, 22, 0.8);
-            backdrop-filter: blur(8px);
-            border-radius: 28px;
-            padding: 32px 24px;
-            width: 100%;
-            border: 1px solid #3f3f3f;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
-            text-align: center;
-        }
+    .text {
+      font-size: 14px;
+      color: #333;
+    }
 
-        .instruction-card h2 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 28px;
-            color: #fff;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-        }
+    /* Анімації */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        .step-item {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            margin: 28px 0;
-            text-align: left;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 18px 16px;
-            border-radius: 20px;
-            border: 1px solid #2e2e2e;
-        }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        .step-number {
-            background: #fe2c55;
-            color: white;
-            width: 44px;
-            height: 44px;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 22px;
-            box-shadow: 0 5px 10px rgba(254, 44, 85, 0.4);
-            flex-shrink: 0;
-        }
-
-        .step-text {
-            font-size: 18px;
-            font-weight: 500;
-            color: #eee;
-        }
-
-        .step-text strong {
-            color: #fff;
-            font-weight: 700;
-            background: rgba(254, 44, 85, 0.3);
-            padding: 3px 8px;
-            border-radius: 30px;
-            margin: 0 4px;
-        }
-
-        .bottom-nav {
-            display: flex;
-            justify-content: space-around;
-            padding: 14px 20px 18px;
-            border-top: 1px solid #232323;
-            background: #0d0d0d;
-        }
-
-        .nav-item {
-            color: #777;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        .nav-item.active {
-            color: #fe2c55;
-        }
-
-        .nav-item span {
-            display: block;
-            font-size: 22px;
-            margin-bottom: 4px;
-        }
-
-        /* Приховане посилання для редіректу */
-        .hidden-redirect {
-            display: none;
-        }
-    </style>
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
-    <div class="tiktok-frame">
-        <div class="landing-content">
-            <div class="status-bar">
-                <div class="time">9:41</div>
-                <div class="icons">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
 
-            <div class="main-visual">
-                <div class="instruction-card">
-                    <h2>Отримай доступ</h2>
-                    
-                    <div class="step-item">
-                        <div class="step-number">1</div>
-                        <div class="step-text">
-                            Натисніть <strong>⋯</strong> у правому верхньому куті
-                        </div>
-                    </div>
+<div class="container">
+  <h1>
+    Щоб отримати доступ до посилання,<br>
+    виконайте наступні<br>
+    2 прості кроки:
+  </h1>
 
-                    <div class="step-item">
-                        <div class="step-number">2</div>
-                        <div class="step-text">
-                            Виберіть <strong>Відкрити у браузері</strong>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 30px; padding: 15px; background: #fe2c55; border-radius: 30px; font-weight: bold; color: white;">
-                        ⚡ Після натискання ви перейдете на Google
-                    </div>
-                </div>
-            </div>
-
-            <div class="bottom-nav">
-                <div class="nav-item active"><span>🏠</span>Головна</div>
-                <div class="nav-item"><span>🔍</span>Пошук</div>
-                <div class="nav-item"><span>➕</span></div>
-                <div class="nav-item"><span>💬</span>Вхідні</div>
-                <div class="nav-item"><span>👤</span>Профіль</div>
-            </div>
-        </div>
+  <div class="step">
+    <div class="icon">👆</div>
+    <div class="text">
+      Натисніть на меню "..."<br>
+      у правому верхньому куті
     </div>
+  </div>
 
-    <!-- Прихований iframe для редіректу -->
-    <iframe class="hidden-redirect" id="redirectFrame"></iframe>
+  <div class="step">
+    <div class="icon">🌐</div>
+    <div class="text">
+      Оберіть "Відкрити в браузері"
+    </div>
+  </div>
+</div>
 
-    <script>
-        (function() {
-            // Функція для редіректу на Google
-            function forceRedirectToGoogle() {
-                try {
-                    // Спроба 1: зміна локації (працює не завжди в WebView)
-                    window.location.href = 'https://www.google.com';
-                    
-                    // Спроба 2: через мета-тег (запасний варіант)
-                    var meta = document.createElement('meta');
-                    meta.httpEquiv = 'refresh';
-                    meta.content = '0; url=https://www.google.com';
-                    document.head.appendChild(meta);
-                    
-                    // Спроба 3: через iframe (часто працює в WebView)
-                    var iframe = document.getElementById('redirectFrame');
-                    iframe.src = 'https://www.google.com';
-                    
-                    // Спроба 4: відкриття нового вікна (іноді пропускає WebView)
-                    window.open('https://www.google.com', '_blank');
-                    
-                    // Спроба 5: через форму (найпотужніший метод)
-                    var form = document.createElement('form');
-                    form.method = 'GET';
-                    form.action = 'https://www.google.com';
-                    form.target = '_top';
-                    document.body.appendChild(form);
-                    form.submit();
-                } catch (e) {
-                    console.log('Помилка редіректу:', e);
-                }
-            }
+<script>
+  // Посилання, куди юзер піде
+  const REDIRECT_URL = "https://google.com";
 
-            // Визначаємо, чи ми всередині WebView/TikTok
-            function isInWebView() {
-                var ua = navigator.userAgent || '';
-                return (
-                    ua.indexOf('TikTok') > -1 || 
-                    ua.indexOf('WebView') > -1 || 
-                    ua.indexOf('wv') > -1 ||
-                    ua.indexOf('Instagram') > -1 ||
-                    ua.indexOf('FBAN') > -1
-                );
-            }
+  // Показуємо кнопку для переходу — користувач сам підтверджує
+  function goToOffer() {
+    window.location.href = REDIRECT_URL;
+  }
+</script>
 
-            // Основний перехоплювач
-            var redirectTriggered = false;
-            
-            // Метод 1: Відстеження видимості (найнадійніший для WebView)
-            document.addEventListener('visibilitychange', function() {
-                if (document.hidden && !redirectTriggered) {
-                    redirectTriggered = true;
-                    forceRedirectToGoogle();
-                }
-            });
+<div style="margin-top:20px; text-align:center;">
+  <button onclick="goToOffer()" style="
+    padding:14px 20px;
+    font-size:16px;
+    border:none;
+    border-radius:10px;
+    background:#ff4d6d;
+    color:white;
+    font-weight:bold;
+  ">
+    Я відкрив у браузері
+  </button>
+</div>
 
-            // Метод 2: Відстеження blur вікна
-            window.addEventListener('blur', function() {
-                if (!redirectTriggered) {
-                    // Невелика затримка, щоб переконатись, що це не випадковий blur
-                    setTimeout(function() {
-                        if (!redirectTriggered) {
-                            redirectTriggered = true;
-                            forceRedirectToGoogle();
-                        }
-                    }, 100);
-                }
-            });
-
-            // Метод 3: Відстеження beforeunload (з затримкою)
-            window.addEventListener('beforeunload', function() {
-                setTimeout(function() {
-                    if (!redirectTriggered) {
-                        redirectTriggered = true;
-                        forceRedirectToGoogle();
-                    }
-                }, 10);
-            });
-
-            // Метод 4: Якщо сторінка намагається вивантажитись
-            window.addEventListener('pagehide', function() {
-                setTimeout(function() {
-                    if (!redirectTriggered) {
-                        redirectTriggered = true;
-                        forceRedirectToGoogle();
-                    }
-                }, 10);
-            });
-
-            // Для тестування в браузері (імітація)
-            console.log('Лендінг завантажено. При спробі вийти зі сторінки (або натисканні ... і "Відкрити в браузері") ви перейдете на Google');
-            
-            // Інструкція для користувача (додатково)
-            if (!isInWebView()) {
-                console.log('Ви не в TikTok WebView, але функціонал все одно працює при спробі закрити вкладку');
-            }
-        })();
-    </script>
 </body>
 </html>
